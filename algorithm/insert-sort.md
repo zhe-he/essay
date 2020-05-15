@@ -35,6 +35,8 @@
             if (arr[i] < arr[i - 1]) {
                 // 交换位置
                 [arr[i], arr[i - 1]] = [arr[i - 1], arr[i]];
+            } else {
+                break;
             }
         }
         n++;
@@ -50,6 +52,8 @@
                 if (arr[i] < arr[i - 1]) {
                     // 交换位置
                     [arr[i], arr[i - 1]] = [arr[i - 1], arr[i]];
+                } else {
+                    break;
                 }
             }
             n++;
@@ -58,4 +62,15 @@
     // 调用
     var arr = [9, 7, 8, 2, 5, 1, 3, 6, 4];
     insertSort(arr);
+```
+1. 优化
+```
+    function insertSort(arr) {
+        for(var i = 1; i < arr.length; i++) {
+            for(var j = i; j > 0 && arr[j] < arr[j - 1]; j--) {
+                // 交换位置
+                [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]];
+            }
+        }
+    }
 ```
