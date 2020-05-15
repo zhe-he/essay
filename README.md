@@ -13,3 +13,4 @@
     * [计数排序](algorithm/count-sort.md)
     * [桶排序](algorithm/bucket-sort.md)
     * [基数排序](algorithm/radix-sort.md)
+* [寻路算法](algorithm/a-start.md)
