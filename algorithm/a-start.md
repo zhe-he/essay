@@ -31,7 +31,6 @@ F: G和H的综合评估，F值越小越好
         gridH = 20;
         startPos = { x: 8, y: 10 };
         endPos = { x: 15, y: 8 };
-        openList = [];
         closeList = [];
         constructor() {
             this.createMapList();
@@ -60,31 +59,78 @@ F: G和H的综合评估，F值越小越好
                 let p = { x: 11, y: 7 + i };
                 this.addMapPoint(p, 1);
             }
-        },
+        }
         // 开始寻路
         start() {
-            this.openList = this.getOpenList(this.startPos);
-            if (this.openList.length == 0) {
-                // 无路可走
+            let curPos = this.startPos;
+            while(curPos = this.findRoad(curPos)) {
+                if (this.isMoveEnd(curPos)) {
+                    console.log('到达终点');
+                    console.log('行走路径', this.closeList);
+                    return;
+                }
             }
+            console.log('无法找到能到达目的地的路径', this.closeList);
+        }
+        isMoveEnd(pos) {
+            return pos.x == this.endPos.x && pos.y == this.endPos.y;
+        }
+        // 寻路
+        findRoad(curPos) {
+            let openList = this.getOpenList(curPos);
+            openList = this.filterList(openList);
+            let step, nextStep, minF = Number.MAX_VALUE;
+            while(step = openList.pop()) {
+                if (this.isMoveEnd(step)) {
+                    return step;
+                }
+
+                let f = this.f(step);
+                if (f < minF) {
+                    // 找到最小的F值
+                    minF = f;
+                    nextStep = step;
+                }
+            }
+            if (!nextStep) {
+                // 无路可走
+                return null;
+            }
+            this.closeList.push(nextStep);
+            return nextStep;
+        }
+        // 过滤已走过的路
+        filterList(list) {
+            return list.filter(({x: a, y: b}) => (
+                !this.closeList.find(({x, y}) => a == x && b == y)
+            ));
         }
         getOpenList(pos) {
             let openList = [];
             // 按照上右下左查询
-            if (pos.y > 0 && this.mapList[pos.y - 1][pos.x] == 0) {
+            if (pos.y > 0 && this.mapList[pos.y - 1][pos.x] != 1) {
                 openList.push({ x: pos.x, y: pos.y - 1 });
             }
-            if (pos.x < this.gridW - 1 && this.mapList[pos.y][pos.x + 1] == 0) {
+            if (pos.x < this.gridW - 1 && this.mapList[pos.y][pos.x + 1] != 1) {
                 openList.push({ x: pos.x + 1, y: pos.y });
             }
-            if (pos.y < this.gridH - 1 && this.mapList[pos.y + 1][pos.x] == 0) {
+            if (pos.y < this.gridH - 1 && this.mapList[pos.y + 1][pos.x] != 1) {
                 openList.push({ x: pos.x, y: pos.y + 1 });
             }
-            if (pos.x > 0 && this.mapList[pos.y][pos.x - 1] == 0) {
+            if (pos.x > 0 && this.mapList[pos.y][pos.x - 1] != 1) {
                 openList.push({ x: pos.x - 1, y: pos.y });
             }
             return openList;
         }
+        getDistance(pointA, pointB) {
+            return Math.abs(pointB.x - pointA.x) + Math.abs(pointB.y - pointA.y);
+        }
+        f(pos) {
+            let g = this.getDistance(this.startPos, pos);
+            let h = this.getDistance(pos, this.endPos);
+            return g + h;
+        }
     }
 
+    new Game().start();
 ```
