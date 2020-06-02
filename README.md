@@ -24,3 +24,8 @@
 * [过渡与动画](css/animation/README.md)
     * [过渡](css/animation/transition.md)
     * [动画](css/animation/animation.md)
+
+### JAVASCRIPT
+* [功能函数](javascript/function/README.md)
+    * [函数节流](javascript/function/throttle.md)
+    * [函数防抖](javascript/function/debounce.md)
