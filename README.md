@@ -30,6 +30,7 @@
     * [函数节流](javascript/function/throttle.md)
     * [函数防抖](javascript/function/debounce.md)
     * [碰撞检测](javascript/function/collision.md)
+* [事件委托(事件代理)](javascript/event.md)
 * [Canvas(施工中...)](javascript/canvas/README.md)
     * [基本属性](javascript/canvas/basic-props.md)
     * [基本方法](javascript/canvas/basic-methods.md)
