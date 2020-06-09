@@ -47,3 +47,13 @@
         // 缺点是手机横向清晰度和纵像清晰度不一致
     </script>
 ```
+
+### 常用属性
+```
+    ctx.fillStyle = 'red' // 设置填充颜色
+    ctx.strokeStyle = 'red' // 设置笔触颜色
+    ctx.lineWidth = '5' // 设置线条宽度
+    ctx.lineCap = 'round' // 设置线条样式 butt/round/square
+    ctx.lineJoin = 'round' // 两条线条的连接类型 bevel/round/miter
+    ctx.miterLimit = 5 // 设置最大斜角长度(两条线交汇处内角和外角之间的距离)
+```
