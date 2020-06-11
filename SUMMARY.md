@@ -35,7 +35,8 @@
 * [Canvas](javascript/canvas/README.md)
     * [基本属性](javascript/canvas/basic-props.md)
     * [基本方法](javascript/canvas/basic-methods.md)
-    * [图片处理(施工中...)](javascript/canvas/image.md)
+    * [图片处理](javascript/canvas/image.md)
+    * [贝塞尔曲线(施工中...)](javascript/canvas/bezier.md)
     * [赛车小游戏(施工中...)](javascript/canvas/car.md)
 
 ### 插件(施工中...)
